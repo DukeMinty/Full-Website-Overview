@@ -5,3 +5,7 @@ https://www.youtube.com/watch?v=Hl7diL7SFw8&list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x
 Tutorial for React and its syntax:
 
 https://youtu.be/hn80mWvP-9g?feature=shared
+
+How to pull to VSCode:
+
+https://youtu.be/_ynMa2XlRgk?feature=shared

@@ -1,32 +1,26 @@
 import './App.css';
 import axios from "axios";
 import {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import Home from './pages/Home';
+import CreatePost from './pages/CreatePost';
 
-
+//using app to handle routes, add as many routes as we need
 function App() {
 
-  const [listOfPosts, setListOfPosts] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:3050/uploads").then((response)=> {
-      setListOfPosts(response.data);
-    })
-  },[])
   return (
     <div className="App">
-      {listOfPosts.map((value, key)=> {
-        return( 
-        <div className="upload">
-          <div className="title">{value.recipeTitle}</div>
-          <div className="body">{value.recipeDesc}</div>
-          <div className="footer">{value.userName}</div>
-        </div>
-    );
-    })}
-      
-    </div>
-  );
+      <Router>
+        <Link to="/createpost">Create A Post</Link>
+        <Link to="/">Home Page</Link>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
+      </Router>
+    </div>);
 }
 
 export default App;
-//maybe include post date with something like <div className="date">{value.date}</div>
+

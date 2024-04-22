@@ -1,8 +1,10 @@
 //import express
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 //change this to change the port the project runs on
 let portNum = 3050;

@@ -1,108 +1,67 @@
-import React from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-function CreatePost() {
+import React from "react";
+import{Formik, Form, Field, ErrorMessage} from "formik";
+import* as Yup from "yup";
+import axios from "axios";
 
-    const initial = {
-        recipeTitle: "",
-        recipeDesc: "",
-        username: "",
-    }
-    const handleSubmit = (post)=>{
+function CreatePost(){
+
+    //Ensure aspects of posts
+    const validationSchema = Yup.object().shape({
+
+        //Title requirements
+        title:
+            Yup.string()
+            .max(40, "Title cannot exceed 40 characters")
+            .required("Title is required"),
         
-            axios.post("http://localhost:3050/uploads", post).then((response)=> {
-              setListOfPosts(response.post);
-            })
-        }
-    
-    const validation = Yup.object().shape({
-        recipeTitle: Yup.string().required(),
-        recipeDesc: Yup.string().required(),
-        userName: Yup.string().required()
-    });
+        //Content requirements
+        postText:
+            Yup.string()
+            .min(20, "Content too short")
+            .max(500, "Post content cannot exceed 500 characters")
+            .required("Post content is required"),
 
-  return (
+        //Username requirements
+        username:
+            Yup.string()
+            .min(3, "Username too short")
+            .max(20, "Username cannot exceed 20 characters")
+            .required("Username is required")
+    })
+
+    const initialValues = {
+        title: "",
+        postText: "",
+        username: "",
+    };
+
+    const onSubmit = (data) => {
+        axios.post("http://localhost:3001/posts", data).then((response) => {
+            console.log("successful post");
+          });
+    }
+
+    return (
     <div className="createPostPage">
-        <Formik initialValues={initial} onSubmit={handleSubmit} validationSchema={validation}>
-            <Form>
-                <label>Recipe Name: </label>
-                <ErrorMessage name="recipeTitle" component="span"></ErrorMessage>
-                <Field id="inputPost" name="recipeTitle" placeholder="Recipe Name"></Field>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+            <Form className="formContainer">
+                <label>Title Your Recipe: </label>
+                <ErrorMessage name="title" component="span" id="warning"/>
+                <Field id="inputCreatePost" name="title"/>
 
-                <label>Recipe Description: </label>
-                <ErrorMessage name="recipeDesc" component="span"></ErrorMessage>
-                <Field id="inputPost" name="recipeDesc" placeholder="Recipe Desc."></Field>
+                <label>Tell Us About It: </label>
+                <ErrorMessage name="postText" component="span" id="warning"/>
+                <Field id="inputCreatePost" name="postText"/>
 
                 <label>Username: </label>
-                <ErrorMessage name="userName" component="span"></ErrorMessage>
-                <Field id="inputPost" name="userName" placeholder="Username"></Field>
+                <ErrorMessage name="username" component="span" id="warning"/>
+                <Field id="inputCreatePost" name="username"/>
 
-                <button type="submit">Upload Recipe!</button>
+                <button type = "submit">Create Post</button>
             </Form>
         </Formik>
-      
     </div>
-  )
+    );
 }
 
-export default CreatePost
-
-
-
-
-
-//if we want to use formik:
-
-/*<Formik initialValues={} onSubmit={} validationSchema={}>
-            <Form>
-                <label>Recipe Name: </label>
-                <Field id="inputPost" name="recipeTitle" placeholder="Recipe Name"></Field>
-
-                <label>Recipe Description: </label>
-                <Field id="inputPost" name="recipeDesc" placeholder="Recipe Desc."></Field>
-
-                <label>Username: </label>
-                <Field id="inputPost" name="userName" placeholder="Username"></Field>
-
-                <button type="submit">Upload Recipe!</button>
-            </Form>
-        </Formik> */
-
-
-
-//if we don't want to use formik:
-/*<form onSubmit={handleSubmit} className="formContainer">
-            
-            <div className="inputPost">
-                <label htmlFor="recipeTitle">Recipe Title: </label>
-                <input 
-                type="text" 
-                id="recipeTitle" 
-                value={formValues.recipeTitle||""} 
-                onChange={handleChange}>
-                </input>
-            </div>
-            
-            <div className="inputPost">
-                <label htmlFor="recipeDesc">Recipe Description: </label>
-                <input 
-                type="text" 
-                id="recipeDesc"
-                value={formValues.recipeDesc||""}
-                onChange={handleChange}>
-                </input>
-            </div>
-            
-            <div className="inputPost">
-                <label htmlFor="userName">Username: </label>
-                <input 
-                type="text" 
-                id="userName"
-                value={formValues.userName||""}
-                onChange={handleChange}>
-                </input>
-            </div>
-            
-            <button type="submit" className="submitBtn">Upload Recipe!</button>
-        </form>*/
+export default CreatePost;

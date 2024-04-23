@@ -1,29 +1,33 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from "react";
 
-function Home() {
+function Home(){
+
     const [listOfPosts, setListOfPosts] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:3050/uploads").then((response)=> {
-      setListOfPosts(response.data);
-    })
-  },[]);
-  return (
-    <div>
-      {listOfPosts.map((value, key)=> {
-        return( 
-        <div className="upload">
-          <div className="title">{value.recipeTitle}</div>
-          <div className="body">{value.recipeDesc}</div>
-          <div className="footer">{value.userName}</div>
+    useEffect(() => {
+      axios.get("http://localhost:3001/posts").then((response) => {
+        setListOfPosts(response.data.reverse())
+      });
+    }, []);
+
+    return(
+        <div className="container">
+            {listOfPosts.map((value, key) => {
+                return (
+                <div className ="post">
+                    <div className="title">{value.title}</div>
+                    <div className="body">{value.postText}</div>
+                    <div className="footer">
+              <img src="/User_icon.png" alt="User Icon" className="user-icon" />
+              {value.username}
+            </div>
+                </div>
+            );
+        })}
         </div>
-      );
-    })}
-    </div>
-  )
+    );
 }
 
-export default Home
-//maybe include post date with something like <div className="date">{value.date}</div>
+export default Home;

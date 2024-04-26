@@ -2,17 +2,14 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useHistory} from "react-router-dom"; 
 
-function CreateUpload() {
-  let navigate = useNavigate();
+function CreatePost(){
+    let history = useHistory();
 
-  // Ensure aspects of posts
-  const validationSchema = Yup.object().shape({
-    // Title requirements
-    title: Yup.string()
-      .max(40, "Title cannot exceed 40 characters")
-      .required("Title is required"),
+    //Ensure aspects of posts
+    const validationSchema = Yup.object().shape({
+        
 
     // Content requirements
     postText: Yup.string()
@@ -33,12 +30,13 @@ function CreateUpload() {
     username: "",
   };
 
-  const onSubmit = (data) => {
-    axios.post("http://localhost:3001/posts", data).then((response) => {
-      console.log("successful post");
-      navigate("/");
-    });
-  };
+    const onSubmit = (data) => {
+        axios.post("http://localhost:3001/posts", data).then((response) => {
+            history.push("/");
+          });
+
+  
+    }
 
   return (
     <div className="createPostPage">

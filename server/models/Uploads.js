@@ -12,7 +12,11 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             allowNull : false,
-        }
+        },
+        likeCounter: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
     });
 
     return Uploads;

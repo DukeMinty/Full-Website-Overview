@@ -16,7 +16,7 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust alignment as needed */
+  justify-content: space-between;
   margin: 50px;
 }
 
@@ -56,9 +56,9 @@ body {
 }
 
 .user-icon {
-  width: 20px; /* Adjust the width of the user icon */
-  height: 20px; /* Adjust the height of the user icon */
-  margin-right: 5px; /* Add some space between the icon and the username */
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .post .footer {
@@ -74,7 +74,30 @@ body {
   border-bottom-right-radius: 10px;
 }
 
-/* CREATE POST PAGE CSS */
+.post .footer .likeCounter {
+  margin-left: 240px;
+  margin-bottom: 10px; 
+  flex: 1;
+}
+
+.likeButton {
+  padding: 0;
+  border: none; 
+  background: none; 
+  cursor: pointer; 
+  width: 30px; 
+  height: 30px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.likeIcon {
+  width: 100%; 
+  height: 100%; 
+  display: block; 
+}
+
+/* CREATE POST PAGE */
 
 .createPostPage {
   font-family: Arial, Helvetica, sans-serif;
@@ -120,6 +143,13 @@ body {
   background-color: rgb(17, 71, 35);
 }
 
+#warning {
+  color: red;
+}
+
+
+/* NAV BAR */
+
 .navbar {
   width: 100%;
   height: 70px;
@@ -135,22 +165,21 @@ body {
   color: white;
 }
 
+
+/* POST PAGE */
+
 .postPage {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90vh; /* Set height to 100% of viewport height */
-  background-color: #90a158; /* Set desired background color */
+  height: 90vh;
+  background-color: #90a158;
 }
 
 .postText {
   font-size: 25px;
-  text-align: center; /* Center text horizontally */
-  max-width: 90%; /* Limit maximum width to 90% of the container width */
-  overflow-wrap: break-word; /* Enable word wrap to prevent text overflow */
-}
-
-#warning {
-  color: red;
+  text-align: center;
+  max-width: 90%;
+  overflow-wrap: break-word;
 }

@@ -18,7 +18,9 @@ function Upload() {
 
     return (
         <div className="postPage">
-            <div className="postText">{postObject.postText}</div>
+            <div className = "postContainer">
+            <p className="postText">{postObject.postText}</p>
+            </div>
         </div>
     );
 }

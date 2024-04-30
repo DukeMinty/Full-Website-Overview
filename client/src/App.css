@@ -1,3 +1,5 @@
+
+
 .App {
   width: 100vw;
   height: auto;
@@ -39,7 +41,7 @@ body {
 }
 .post .title {
   flex: 20%;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid antiquewhite;
   background-color: rgb(17, 71, 35);
   display: grid;
   place-content: center;
@@ -55,40 +57,47 @@ body {
   background-color: antiquewhite;
 }
 
-.user-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-
 .post .footer {
   flex: 20%;
   font-size: 15px;
-  border-top: 1px solid lightgray;
+  border-top: 1px solid antiquewhite;
   display: flex;
-  align-items: center;
-  padding-left: 15px;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 0 15px; 
   background-color: rgb(17, 71, 35);
-  color: white;
+  color: antiquewhite;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.post .footer .likeCounter {
-  margin-left: 240px;
-  margin-bottom: 10px; 
-  flex: 1;
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.likeCounter {
+  display: flex;
+  align-items: center;
 }
 
 .likeButton {
   padding: 0;
-  border: none; 
-  background: none; 
-  cursor: pointer; 
-  width: 30px; 
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 30px;
   height: 30px;
-  margin-right: 5px;
-  margin-top: 10px;
 }
 
 .likeIcon {
@@ -123,7 +132,7 @@ body {
   height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 2px solid grey;
+  border: 2px solid antiquewhite;
   border-radius: 5px;
   padding-left: 10px;
   font-size: 20px;
@@ -136,11 +145,11 @@ body {
   background-color: #114723;
   border-radius: 5px;
   color: white;
+  font-size: 20px;
 }
 
 .formContainer button:hover {
   cursor: pointer;
-  background-color: rgb(17, 71, 35);
 }
 
 #warning {
@@ -164,18 +173,21 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: white;
-  padding: 15px 20px; /* Adjust padding for top and bottom */
+  color: antiquewhite;
+  padding: 15px 20px;
   border: 2px solid antiquewhite;
-  box-sizing: border-box; /* Ensure padding is included in total height */
-
-  /* Center the text vertically */
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 90%;
+  margin: 6px 6px;
+  border-radius: 5px;
+}
 
-  /* Set explicit height to match navbar height */
-  height: 100%;
+.navbar a:hover {
+  background-color: white;
+  color: rgb(17, 71, 35);
 }
 
 

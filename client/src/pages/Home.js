@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
-    const [likedPosts, setLikedPosts] = useState(new Set()); // Set to store liked post IDs
+    const [likedPosts, setLikedPosts] = useState(new Set());
     let navigate = useNavigate();
 
     const handlePostClick = (postId) => {
@@ -58,30 +58,32 @@ function Home() {
     }, []);
 
     return (
-        <div className="container">
-            {listOfPosts.map((value, key) => (
-                <div className="post" key={key}>
-                    <div className="title">{value.title}</div>
-                    <div className="body" onClick={() => handlePostClick(value.id)}>
-                        Click to check out!
-                    </div>
-                    <div className="footer">
-                        <img src="/User_icon.png" alt="User Icon" className="user-icon" />
-                        {value.username}
-                        <div className="likeCounter">
-                            <button className="likeButton" onClick={() => handleLike(value.id)}>
-                                {likedPosts.has(value.id) ? (
-                                    <img src="/likeCountFull.png" alt="Full Like" className="likeIcon" />
-                                ) : (
-                                    <img src="/likeCountEmpty.png" alt="Empty Like" className="likeIcon" />
-                                )}
-                            </button>
-                            {value.likeCounter}
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
+		<div className="container">
+		{listOfPosts.map((value, key) => (
+			<div className="post" key={key}>
+			<div className="title">{value.title}</div>
+			<div className="body" onClick={() => handlePostClick(value.id)}>
+				Click to check out!
+			</div>
+			<div className="footer">
+				<div className="user-info">
+				<img src="/User_icon.png" alt="User Icon" className="user-icon" />
+				<span className="username">{value.username}</span>
+				</div>
+				<div className="likeCounter">
+				<button className="likeButton" onClick={() => handleLike(value.id)}>
+					{likedPosts.has(value.id) ? (
+					<img src="/likeCountFull.png" alt="Full Like" className="likeIcon" />
+					) : (
+					<img src="/likeCountEmpty.png" alt="Empty Like" className="likeIcon" />
+					)}
+				</button>
+				{value.likeCounter}
+				</div>
+			</div>
+			</div>
+		))}
+		</div>
     );
 }
 

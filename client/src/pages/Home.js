@@ -84,6 +84,11 @@ function Home() {
 			</div>
 		))}
 		</div>
+
+
+        
+
+
     );
 }
 

@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         createdAt: {
             type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW, // Default value is the current timestamp
             allowNull: false,
         },
     });

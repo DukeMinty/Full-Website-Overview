@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
+import SortedByLikes from "./pages/SortedByLikes";
 import CreateUpload from "./pages/CreateUpload";
 import Upload from "./pages/Upload";
 import About from "./pages/About";
@@ -22,12 +23,14 @@ function App() {
                   <Link to='/'>Home</Link>
                   <Link to='/createupload'>Upload</Link>
                   <Link to='/about'>About</Link>
+                  <Link to='/sortedByLikes'>Most Liked</Link>
               </div>
               <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path='/createupload' element={<CreateUpload />} />
                   <Route path='/post/:id' element={<Upload />} />
                   <Route path='/about' element={<About />} />
+                  <Route path="/sortedByLikes" element={<SortedByLikes />} />
               </Routes>
           </Router>
       </div>

@@ -13,6 +13,13 @@ router.get("/", async (req, res) => {
     res.json(reversedUploads);
 });
 
+router.get("/sortedByLikes", async (req, res) => {
+        const sortedUploads = await Uploads.findAll({
+            order: [['likeCounter', 'DESC']]
+        });
+        res.json(sortedUploads);
+});
+
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id;
     const post = await Uploads.findByPk(id);

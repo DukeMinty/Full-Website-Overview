@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { formatDate, handleLike } from "../utilities";
 
-function Home() {
+function SortedByLikes() {
     const [listOfPosts, setListOfPosts] = useState([]);
     const [likedPosts, setLikedPosts] = useState(new Set());
     let navigate = useNavigate();
@@ -17,9 +17,9 @@ function Home() {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:3001/posts").then((response) => {
-            const uploadData = response.data;
-            setListOfPosts(uploadData);
+        axios.get("http://localhost:3001/posts/sortedByLikes").then((response) => {
+            const sortedData = response.data;
+            setListOfPosts(sortedData);
         });
     }, []);
 
@@ -56,44 +56,4 @@ function Home() {
     );
 }
 
-export default Home;
-
-//     function formatDate(dateString) {
-//         const date = new Date(dateString);
-//         const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-//         return date.toLocaleDateString(undefined, options);
-//     }
-
-//     const handleLike = async (postId) => {
-//           if (likedPosts.has(postId)) {
-//               // If already liked, unlike the post
-//               await axios.post(`http://localhost:3001/posts/${postId}/unlike`);
-//               setLikedPosts((prevLikedPosts) => {
-//                   const newLikedPosts = new Set(prevLikedPosts);
-//                   newLikedPosts.delete(postId);
-//                   return newLikedPosts;
-//               });
-  
-//               // Decrement likeCounter for the post
-//               const updatedPosts = listOfPosts.map((post) => {
-//                   if (post.id === postId) {
-//                       return { ...post, likeCounter: post.likeCounter - 1 };
-//                   }
-//                   return post;
-//               });
-//               setListOfPosts(updatedPosts);
-//           } else {
-//               // If not liked, like the post
-//               await axios.post(`http://localhost:3001/posts/${postId}/like`);
-//               setLikedPosts((prevLikedPosts) => new Set([...prevLikedPosts, postId]));
-  
-//               // Increment likeCounter for the post
-//               const updatedPosts = listOfPosts.map((post) => {
-//                   if (post.id === postId) {
-//                       return { ...post, likeCounter: post.likeCounter + 1 };
-//                   }
-//                   return post;
-//               });
-//               setListOfPosts(updatedPosts);
-//           }
-//   };
+export default SortedByLikes;

@@ -11,9 +11,6 @@ function Upload() {
             .then((response) => {
                 setPostObject(response.data);
             })
-            .catch((error) => {
-                console.error("Error fetching post:", error);
-            });
     }, [id]);
 
     return (

@@ -7,8 +7,10 @@ const { Uploads } = require("../models")
 router.get("/", async (req, res) => {
     const allUploads = await Uploads.findAll();
 
+    const reversedUploads = allUploads.reverse();
+
     //returns all uploads in the database as json objects
-    res.json(allUploads);
+    res.json(reversedUploads);
 });
 
 router.get('/byId/:id', async (req, res) => {

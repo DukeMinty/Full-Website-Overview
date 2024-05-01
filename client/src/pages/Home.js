@@ -11,6 +11,12 @@ function Home() {
         navigate(`/post/${postId}`);
     };
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
     const handleLike = async (postId) => {
           if (likedPosts.has(postId)) {
               // If already liked, unlike the post
@@ -48,38 +54,40 @@ function Home() {
     useEffect(() => {
         axios.get("http://localhost:3001/posts").then((response) => {
             const uploadData = response.data;
-            const reversedUploads = uploadData.slice().reverse();
-            setListOfPosts(reversedUploads);
+            setListOfPosts(uploadData);
         });
     }, []);
 
     return (
-		<div className="container">
-		{listOfPosts.map((value, key) => (
-			<div className="post" key={key}>
-			<div className="title">{value.title}</div>
-			<div className="body" onClick={() => handlePostClick(value.id)}>
-				Click to check out!
-			</div>
-			<div className="footer">
-				<div className="user-info">
-				<img src="/User_icon.png" alt="User Icon" className="user-icon" />
-				<span className="username">{value.username}</span>
-				</div>
-				<div className="likeCounter">
-				<button className="likeButton" onClick={() => handleLike(value.id)}>
-					{likedPosts.has(value.id) ? (
-					<img src="/likeCountFull.png" alt="Full Like" className="likeIcon" />
-					) : (
-					<img src="/likeCountEmpty.png" alt="Empty Like" className="likeIcon" />
-					)}
-				</button>
-				{value.likeCounter}
-				</div>
-			</div>
-			</div>
-		))}
-		</div>
+        <div className="container">
+            {listOfPosts.map((value, key) => (
+                <div className="post" key={key}>
+                    <div className="title">{value.title}</div>
+                    <div className="body" onClick={() => handlePostClick(value.id)}>
+                        Click to check out!
+                    </div>
+                    <div className="footer">
+                        <div className="user-info">
+                            <img src="/User_icon.png" alt="User Icon" className="user-icon" />
+                            <span className="username">{value.username}</span>
+                        </div>
+                        <div className="createdAt">
+                        {formatDate(value.createdAt)}
+                        </div>
+                        <div className="likeCounter">
+                            <button className="likeButton" onClick={() => handleLike(value.id)}>
+                                {likedPosts.has(value.id) ? (
+                                    <img src="/likeCountFull.png" alt="Full Like" className="likeIcon" />
+                                ) : (
+                                    <img src="/likeCountEmpty.png" alt="Empty Like" className="likeIcon" />
+                                )}
+                            </button>
+                            {value.likeCounter}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 }
 

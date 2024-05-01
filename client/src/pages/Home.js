@@ -12,7 +12,6 @@ function Home() {
     };
 
     const handleLike = async (postId) => {
-      try {
           if (likedPosts.has(postId)) {
               // If already liked, unlike the post
               await axios.post(`http://localhost:3001/posts/${postId}/unlike`);
@@ -44,9 +43,6 @@ function Home() {
               });
               setListOfPosts(updatedPosts);
           }
-      } catch (error) {
-          console.error('Error updating like counter:', error);
-      }
   };
 
     useEffect(() => {

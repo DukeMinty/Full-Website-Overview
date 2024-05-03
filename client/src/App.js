@@ -19,7 +19,6 @@ function App() {
                     <h1 className = "mainTitle">Food Fanatics</h1>
                     <h2 className = "subtitle">Share your favorite recipes!</h2>
                 </div>
-
                   <Link to='/'>Home</Link>
                   <Link to='/createupload'>Upload</Link>
                   <Link to='/about'>About</Link>
